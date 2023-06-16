@@ -1,0 +1,108 @@
+#include <stdio.h>
+
+// Function to print numbers from 1 to n
+void printIncreasing(int n) {
+    int i;
+    for (i = 1; i <= n; i++) {
+        printf("%d", i);
+    }
+}
+void printSpaces(int n) {
+    int i;
+    for (i = 1; i <= n; i++) {
+        printf(" ");
+    }
+}
+
+void printDecreasing(int n) {
+    int i;
+    for (i = n; i >= 1; i--) {
+        printf("%d", i);
+    }
+}
+
+int main() {
+    int n, i, j;
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
+    
+    for (i =n; i >= 1; i--) {
+        printIncreasing(i);
+        printSpaces(2* (n - i));
+        printDecreasing(i);
+        printf("\n");
+    }
+    
+    return 0;
+}
+
+
+2.#include <stdio.h>
+
+int main() {
+    int num;
+    int largest = 0;
+
+    printf("Enter a 4-digit number: ");
+    scanf("%d", &num);
+
+    int divisor = 1000;
+    int temp = num;
+    while (divisor >= 1) {
+        int currentNum = 0;
+        int quotient = temp / divisor;
+        int remainder = temp % divisor;
+        currentNum = quotient * (divisor / 10) + remainder;
+        if (currentNum > largest) {
+            largest = currentNum;
+        }
+
+        divisor /= 10;
+    }
+
+    printf("The largest number by deleting a single digit is: %d\n", largest);
+
+    return 0;
+}
+
+
+3.#include <stdio.h>
+
+void findSmallestAndLargestDigits(int numbers[], int n) {
+    int smallestDigit = 9;
+    int largestDigit = 0;
+    
+    for (int i = 0; i < n; i++) {
+        int num = numbers[i];
+
+        if (num < 0) {
+            printf("Not Valid\n");
+            return;
+        }
+        
+        while (num != 0) {
+            int digit = num % 10;
+            num /= 10;
+            
+            if (digit < smallestDigit) {
+                smallestDigit = digit;
+            }
+            
+            if (digit > largestDigit) {
+                largestDigit = digit;
+            }
+        }
+    }
+
+    printf("Smallest digit: %d\n", smallestDigit);
+    printf("Largest digit: %d\n", largestDigit);
+}
+
+int main() {
+    int n = 4;
+    int numbers[] = { 3,8, 156, 123450 };
+
+    findSmallestAndLargestDigits(numbers, n);
+
+    return 0;
+}s

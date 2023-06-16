@@ -1,0 +1,264 @@
+<!-- 1. Write a function to find biggest of 2 numbers using 
+    ht
+    - if else -->
+    
+
+#include <stdio.h>
+
+int find_biggest_if_else(int num1, int num2) {
+    if (num1 > num2) {
+        return num1;
+    } else {
+        return num2;
+    }
+}
+
+int main() {
+    int num1 = 10;
+    int num2 = 20;
+    int biggest = find_biggest_if_else(num1, num2);
+    printf("The biggest number is: %d\n", biggest);
+    return 0;
+}
+
+<!-- - ternary operator --> 
+
+#include <stdio.h>
+
+int find_biggest_ternary(int num1, int num2) {
+    return (num1 > num2) ? num1 : num2;
+}
+
+int main() {
+    int num1 = 10;
+    int num2 = 20;
+    int biggest = find_biggest_ternary(num1, num2);
+    printf("The biggest number is: %d\n", biggest);
+    return 0;
+}
+
+
+<!-- 2. Write a program to print the grade of the given student using if else if block
+    - 90 to 100 -> "Grade A"
+    - 75 to 89 -> "Grade B"
+    - 60 to 74 -> "Grade C"
+    - 50 to 59 -> "Grade D"
+    - 0 to 49 -> "Grade F" -->
+
+#include <stdio.h>
+
+void print_grade(int score) {
+    if (score >= 90 && score <= 100) {
+        printf("Grade A\n");
+    } else if (score >= 75 && score <= 89) {
+        printf("Grade B\n");
+    } else if (score >= 60 && score <= 74) {
+        printf("Grade C\n");
+    } else if (score >= 50 && score <= 59) {
+        printf("Grade D\n");
+    } else if (score >= 0 && score <= 49) {
+        printf("Grade F\n");
+    } else {
+        printf("Invalid score\n");
+    }
+}
+
+int main() {
+    int score;
+    printf("Enter the student's score: ");
+    scanf("%d", &score);
+    print_grade(score);
+    return 0;
+}
+
+<!-- 3. Write a program to read the 
+    - Roll No
+    - Name (Note, you should read full name of the student including initials)
+    - Marks of Physics, Math and Chemistry
+    Calculate the total, percentage and print the summary. -->
+
+#include <stdio.h>
+
+int main() {
+    int rollNo;
+    char name[50];
+    float physicsMarks, mathMarks, chemistryMarks;
+    
+    // Read roll number
+    printf("Enter Roll Number: ");
+    scanf("%d", &rollNo);
+    
+    // Read name
+    printf("Enter Name: ");
+    scanf(" %[^\n]s", name);
+    
+    // Read marks
+    printf("Enter Marks for Physics: ");
+    scanf("%f", &physicsMarks);
+    
+    printf("Enter Marks for Math: ");
+    scanf("%f", &mathMarks);
+    
+    printf("Enter Marks for Chemistry: ");
+    scanf("%f", &chemistryMarks);
+    
+    // Calculate total marks and percentage
+    float totalMarks = physicsMarks + mathMarks + chemistryMarks;
+    float percentage = (totalMarks / 300) * 100;
+    
+    // Print the summary
+    printf("\n----- Student Summary -----\n");
+    printf("Roll Number: %d\n", rollNo);
+    printf("Name: %s\n", name);
+    printf("Physics Marks: %.2f\n", physicsMarks);
+    printf("Math Marks: %.2f\n", mathMarks);
+    printf("Chemistry Marks: %.2f\n", chemistryMarks);
+    printf("Total Marks: %.2f\n", totalMarks);
+    printf("Percentage: %.2f%%\n", percentage);
+    
+    return 0;
+}
+
+<!-- 4. Write a simple calculator program which should accept inputs in the same order.
+    - Operand 1
+    - Operator
+    - Operand 2
+The order of scan should be same, for example, you should first scan in the following order.
+printf("Enter Number1: );
+Scan the first number form the user.
+printf("Enter the operator: );
+Scan the operator from the user.
+printf("Enter Number2: );
+Scan the second number form the user. -->
+
+#include <stdio.h>
+
+int main() {
+    float operand1, operand2;
+    char operator;
+    
+    // Read operand 1
+    printf("Enter Number 1: ");
+    scanf("%f", &operand1);
+    
+    // Read operator
+    printf("Enter the operator (+, -, *, /): ");
+    scanf(" %c", &operator);
+    
+    // Read operand 2
+    printf("Enter Number 2: ");
+    scanf("%f", &operand2);
+    
+    // Perform calculation based on the operator
+    float result;
+    switch (operator) {
+        case '+':
+            result = operand1 + operand2;
+            break;
+        case '-':
+            result = operand1 - operand2;
+            break;
+        case '*':
+            result = operand1 * operand2;
+            break;
+        case '/':
+            if (operand2 != 0) {
+                result = operand1 / operand2;
+            } else {
+                printf("Error: Division by zero is not allowed.\n");
+                return 1; // Exit with error status
+            }
+            break;
+        default:
+            printf("Error: Invalid operator.\n");
+            return 1; // Exit with error status
+    }
+    
+    // Print the result
+    printf("Result: %.2f\n", result);
+    
+    return 0;
+}
+
+<!-- 5. Write a function to accept an integer (32 bits) and operation type to do the following and return the result to main function.
+    - Set 1st bit, if operation type is 1
+    - Clear 31st bit, if operation type is 2
+    - Toggle 16th bit, if operation type is 3
+   You can consider the below function prototype,
+    - bit_operations(int num, int oper_type); -->
+
+ #include <stdio.h>
+
+int bit_operations(int num, int oper_type) {
+    switch (oper_type) {
+        case 1:
+            // Set 1st bit
+            num |= 1 << 0;
+            break;
+        case 2:
+            // Clear 31st bit
+            num &= ~(1 << 31);
+            break;
+        case 3:
+            // Toggle 16th bit
+            num ^= 1 << 15;
+            break;
+        default:
+            printf("Error: Invalid operation type.\n");
+            return -1; // Return an error code
+    }
+    
+    return num;
+}
+
+int main() {
+    int num, oper_type;
+    
+    // Read the integer and operation type
+    printf("Enter an integer (32 bits): ");
+    scanf("%d", &num);
+    printf("Enter the operation type (1, 2, or 3): ");
+    scanf("%d", &oper_type);
+    
+    // Perform the bit operation
+    int result = bit_operations(num, oper_type);
+    
+    // Print the result
+    if (result != -1) {
+        printf("Result: %d\n", result);
+    }
+    
+    return 0;
+}
+
+<!-- level 2 
+1. Write a function to return the greatest of 3 number using if else if. -->
+
+#include <stdio.h>
+
+int find_greatest(int num1, int num2, int num3) {
+    if (num1 >= num2 && num1 >= num3) {
+        return num1;
+    } else if (num2 >= num1 && num2 >= num3) {
+        return num2;
+    } else {
+        return num3;
+    }
+}
+
+int main() {
+    int num1 = 10;
+    int num2 = 20;
+    int num3 = 15;
+    
+    int greatest = find_greatest(num1, num2, num3);
+    printf("The greatest number is: %d\n", greatest);
+    
+    return 0;
+}
+
+ 
+
+
+
+ 
